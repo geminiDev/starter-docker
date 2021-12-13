@@ -40,7 +40,7 @@ COPY conf/vhost.conf            /etc/httpd/sites-available
 RUN mkdir /etc/httpd/sites-available                /etc/httpd/sites-enabled
 RUN ln -s /etc/httpd/sites-available/vhost.conf     /etc/httpd/sites-enabled/vhost.conf
 
-#RUN a2enconf z-app
+
 VOLUME [ "/var/www/html" ]
 
 #CMD python /app/app.py

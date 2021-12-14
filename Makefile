@@ -14,7 +14,7 @@ docker-images:
 docker-run: 
 	docker build -t test_web .
 	docker volume inspect test-vol
-	docker run --name testcontainer -ti -v test-vol:/var/www/html test_web:latest
+	docker run --name testcontainer -ti -p "80:80" -v test-vol:/var/www/html test_web:latest
 docker-delete-volume:
 	docker volume rm test-vol
 docker-create-volume:

@@ -1,10 +1,33 @@
 version: '3.8'
 services:
-        web:
-            build:
-                context: .
-                dockerfile: dockerfile.test
-            ports:
-              - "80:8080"
-            volumes:
-              - "./data/:/var/www/html/"
+    php:
+        build:
+            context: ./php/
+            dockerfile: Dockerfile
+        expose:
+          - 9000
+        volumes:
+            - ./project:/var/www/html
+        networks:
+            - backend
+        container_name: "${PHP_NAME}"
+    web:
+        build:
+            context: ./apache/
+            dockerfile: Dockerfile
+        ports:
+            - "80:80"
+        links:
+            - php
+        volumes:
+            - ./project:/var/www/html
+        networks:
+            - backend
+        container_name: "${APACHE_NAME}"
+networks:
+    backend:
+    frontend:
+volumes:
+    myserver:
+        external: true
+

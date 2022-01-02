@@ -19,3 +19,13 @@ docker-delete-volume:
 	docker volume rm test-vol
 docker-create-volume:
 	docker volume create test-vol
+docker-composer-up:
+	docker compose  --env-file ./docker.env build
+	docker compose  --env-file ./docker.env up --force-recreate
+docker-exec-httpd:
+	docker exec -it httpd-server bash
+docker-exec-php:
+	docker exec -it php-server bash
+docker-rm-images:
+	@echo "Listing : $(shell docker ps -a --format "{{.ID}} {{.Names}} {{.Image}} {{.State}}")"
+	docker image rm $(shell docker image ls -aq)

@@ -16,7 +16,7 @@ services:
             context: ./apache/
             dockerfile: Dockerfile
             args:
-                - "HTTPD_LOG_DIR=${HTTPD_LOG_DIR}"
+                - "HTTPD_LOG_DIR=${APACHEdo_LOG_DIR}"
         ports:
             - "80:80"
         links:
